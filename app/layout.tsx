@@ -4,6 +4,9 @@ import "@/styles/globals.css";
 import { CartProvider } from "@/lib/CartContext";
 import SmoothScroll from "@/components/SmoothScroll";
 import Nav from "@/components/Nav";
+import CustomCursor from "@/components/ui/CustomCursor";
+import ScrollProgressBar from "@/components/ui/ScrollProgressBar";
+import PageLoader from "@/components/ui/PageLoader";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -34,6 +37,9 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${dmSans.variable}`} suppressHydrationWarning>
       <body className="antialiased selection:bg-[#C4622D] selection:text-white">
         <CartProvider>
+          <PageLoader />
+          <CustomCursor />
+          <ScrollProgressBar />
           <SmoothScroll>
             <Nav />
             <main>{children}</main>

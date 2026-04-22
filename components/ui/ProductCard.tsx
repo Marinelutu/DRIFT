@@ -1,21 +1,75 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useCart } from '@/lib/CartContext'
+import { gsap } from '@/lib/gsap'
 
 export default function ProductCard({ name, category, price, image, index }: { name: string, category: string, price: string, image: string, index: number }) {
   const [added, setAdded] = useState(false)
   const [wishlist, setWishlist] = useState(false)
   const { increment } = useCart()
+  const cardRef = useRef<HTMLDivElement>(null)
 
   const handleQuickAdd = () => {
     setAdded(true)
-    increment()
-    setTimeout(() => {
-      setAdded(false)
-    }, 1500)
+
+    const cartIcon = document.getElementById('nav-cart-icon')
+    const card = cardRef.current
+
+    if (cartIcon && card) {
+      const cardRect = card.getBoundingClientRect()
+      const cartRect = cartIcon.getBoundingClientRect()
+
+      const startX = cardRect.left + cardRect.width / 2
+      const startY = cardRect.top + cardRect.height / 2
+      const endX = cartRect.left + cartRect.width / 2
+      const endY = cartRect.top + cartRect.height / 2
+
+      // Create flying orb
+      const orb = document.createElement('div')
+      orb.style.cssText = `
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #C4622D;
+        pointer-events: none;
+        z-index: 9998;
+        will-change: transform;
+        left: ${startX - 4}px;
+        top: ${startY - 4}px;
+      `
+      document.body.appendChild(orb)
+
+      // Arc: go up first, then curve down to cart
+      // Use two sequential tweens to form the arc
+      const arcPeakY = Math.min(startY, endY) - 100
+
+      gsap.timeline({
+        onComplete: () => {
+          orb.remove()
+          increment()
+        },
+      })
+        .to(orb, {
+          duration: 0.3,
+          ease: 'power2.out',
+          left: (startX + endX) / 2 - 4,
+          top: arcPeakY - 4,
+        })
+        .to(orb, {
+          duration: 0.3,
+          ease: 'power2.in',
+          left: endX - 4,
+          top: endY - 4,
+        })
+    } else {
+      increment()
+    }
+
+    setTimeout(() => setAdded(false), 1500)
   }
 
   const handleWishlist = (e: React.MouseEvent) => {
@@ -25,6 +79,7 @@ export default function ProductCard({ name, category, price, image, index }: { n
 
   return (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -42,6 +97,7 @@ export default function ProductCard({ name, category, price, image, index }: { n
         
         {/* Wishlist Heart */}
         <button
+          data-cursor-hover
           onClick={handleWishlist}
           className="absolute right-3 top-3 z-10 opacity-0 transition-opacity duration-250 group-hover:opacity-100"
           aria-label="Toggle wishlist"
@@ -61,6 +117,7 @@ export default function ProductCard({ name, category, price, image, index }: { n
 
         {/* Quick Add Button */}
         <motion.button
+          data-cursor-hover
           variants={{ rest: { y: 10, opacity: 0 }, hover: { y: 0, opacity: 1 } }}
           transition={{ duration: 0.25 }}
           initial="rest"

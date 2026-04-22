@@ -34,6 +34,7 @@ export default function Home() {
           align="center" 
         />
         <ParallaxStory />
+        <Marquee variant="light" />
         <ProductGrid />
         <SizeGrid />
         <UGCWall />
