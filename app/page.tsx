@@ -5,6 +5,8 @@ import CollectionRail from "@/components/sections/CollectionRail";
 import ParallaxStory from "@/components/sections/ParallaxStory";
 import ProductGrid from "@/components/sections/ProductGrid";
 import Footer from "@/components/Footer";
+import { SizeGrid } from "@/components/ui/SizeGrid";
+import { UGCWall } from "@/components/sections/UGCWall";
 
 export default function Home() {
   return (
@@ -33,6 +35,8 @@ export default function Home() {
         />
         <ParallaxStory />
         <ProductGrid />
+        <SizeGrid />
+        <UGCWall />
       </main>
       <Footer />
     </div>
