@@ -117,9 +117,8 @@ export default function HeroPortal() {
           {/* 2. The Window into the Shop */}
           <div
             ref={portalImageRef}
-            className="absolute inset-0 z-[10] will-change-transform"
+            className="absolute inset-0 z-[10] will-change-transform [clip-path:inset(25vh_20vw)]"
             // The initial "window" size. 25vh top/bottom, 20vw left/right
-            style={{ clipPath: 'inset(25vh 20vw)' }} 
           >
             {/* The Shop Interior Image */}
             <Image

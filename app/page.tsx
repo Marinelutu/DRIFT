@@ -2,6 +2,8 @@ import HeroPortal from "@/components/sections/HeroPortal";
 import Marquee from "@/components/ui/Marquee";
 import KineticText from "@/components/sections/KineticText";
 import CollectionRail from "@/components/sections/CollectionRail";
+import ParallaxStory from "@/components/sections/ParallaxStory";
+import ProductGrid from "@/components/sections/ProductGrid";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -29,6 +31,8 @@ export default function Home() {
           bg="light" 
           align="center" 
         />
+        <ParallaxStory />
+        <ProductGrid />
       </main>
       <Footer />
     </div>
