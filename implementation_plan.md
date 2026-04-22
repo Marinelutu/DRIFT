@@ -186,12 +186,12 @@ Build /components/Footer.tsx per Technical Rule 10.
 ```
 Generate and save to /public/images/hero/:
 
-mirror-editorial.webp — 1200×1800px
+mirror-editorial.png — 1200×1800px
 Young woman, oversized off-white linen jacket, wide-leg trousers. Sun-drenched rooftop terrace,
 terracotta walls, plants. Looking slightly off-camera, casual. Warm afternoon light.
 Color grade: warm, slightly desaturated.
 
-hero-bg-texture.webp — 1920×1080px
+hero-bg-texture.png — 1920×1080px
 Subtle linen fabric texture, off-white, nearly invisible. Slightly noisy surface. No people.
 ```
 
@@ -207,7 +207,7 @@ Structure:
     Border: 2px solid #C4A882.
     Box-shadow: inset 0 0 0 8px #F5F0EB, inset 0 0 0 10px #C4A882.
     Overflow: hidden.
-  Next.js <Image> inside frame: fill, object-fit: cover, src: /images/hero/mirror-editorial.webp, priority.
+  Next.js <Image> inside frame: fill, object-fit: cover, src: /images/hero/mirror-editorial.png, priority.
   Frame border overlay div (separate, same absolute position as frame, pointer-events none):
     Used only for the opacity fade animation.
 
@@ -246,7 +246,7 @@ Grain overlay on sticky wrapper (::after pseudo, or a div):
   Position absolute, inset 0, pointer-events none, z-index: 10.
   Background: inline SVG noise at opacity 0.035.
 
-Background of sticky wrapper: url(/images/hero/hero-bg-texture.webp) center/cover.
+Background of sticky wrapper: url(/images/hero/hero-bg-texture.png) center/cover.
 
 gsap.context() for all animations. Kill all instances on useEffect cleanup.
 TypeScript throughout.
