@@ -52,7 +52,7 @@ export function NewsletterCard() {
                 className="absolute inset-0 flex items-center justify-center"
               >
                 <div className="font-display italic text-[1.5rem] text-[#F5F0EB] text-center">
-                  ✓ You're on the list.
+                  ✓ You&apos;re on the list.
                 </div>
               </motion.div>
             )}

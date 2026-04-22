@@ -122,12 +122,12 @@ export default function HeroPortal() {
           >
             {/* The Shop Interior Image */}
             <Image
-              src="/images/hero/shop-interior.png"
+              src="/images/hero/shop-interior-v2.png"
               alt="DRIFT high-end shop interior"
               fill
               loading="eager"
               sizes="100vw"
-              className="object-cover"
+              className="object-contain"
             />
             
             {/* The "Glass Feeling" Overlay (Frosted/reflective, fades out) */}

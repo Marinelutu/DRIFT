@@ -74,7 +74,7 @@ export function SizeGrid() {
                 <div className="flex-1 grid grid-cols-5 gap-2">
                   {colorways.map((cw) => (
                     <div key={cw.name} className="flex flex-col items-center gap-2">
-                      <div className="w-[12px] h-[12px] rounded-full" style={{ backgroundColor: cw.hex }} />
+                      <div className={`colorway-dot dot-${cw.name.toLowerCase()}`} />
                       <span className="font-body text-[11px] text-[#1A1A18]">{cw.name}</span>
                     </div>
                   ))}

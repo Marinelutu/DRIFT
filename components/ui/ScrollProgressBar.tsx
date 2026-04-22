@@ -31,18 +31,7 @@ export default function ScrollProgressBar() {
     <div
       ref={barRef}
       aria-hidden="true"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        height: '2px',
-        width: '0%',
-        background: '#C4622D',
-        zIndex: 9999,
-        transform: 'translateZ(0)',
-        willChange: 'width',
-        pointerEvents: 'none',
-      }}
+      className="scroll-progress"
     />
   )
 }

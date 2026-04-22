@@ -79,22 +79,7 @@ export default function CustomCursor() {
     <div
       ref={cursorRef}
       aria-hidden="true"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '12px',
-        height: '12px',
-        border: '1.5px solid #C4622D',
-        borderRadius: '50%',
-        pointerEvents: 'none',
-        zIndex: 9999,
-        mixBlendMode: 'multiply',
-        opacity: 0,
-        background: 'transparent',
-        transition: 'width 0.2s ease, height 0.2s ease, background 0.2s ease, border-color 0.2s ease',
-        willChange: 'transform',
-      }}
+      className="cursor-dot"
     />
   )
 }
