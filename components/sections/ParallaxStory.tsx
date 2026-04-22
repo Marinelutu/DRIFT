@@ -75,7 +75,7 @@ export default function ParallaxStory() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative h-[180vh] bg-[#1A1A18]">
+    <section ref={sectionRef} className="relative h-[180vh] bg-transparent">
       <div className="sticky top-0 h-[100vh] w-full overflow-hidden">
         
         {/* Layer 1 - BG */}

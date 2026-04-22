@@ -6,13 +6,29 @@ import { motion } from 'framer-motion'
 import { useCart } from '@/lib/CartContext'
 import { gsap } from '@/lib/gsap'
 
-export default function ProductCard({ name, category, price, image, index }: { name: string, category: string, price: string, image: string, index: number }) {
+export default function ProductCard({ 
+  name, 
+  category, 
+  price, 
+  image, 
+  index,
+  className = "" 
+}: { 
+  name: string, 
+  category: string, 
+  price: string, 
+  image: string, 
+  index: number,
+  className?: string 
+}) {
   const [added, setAdded] = useState(false)
   const [wishlist, setWishlist] = useState(false)
   const { increment } = useCart()
   const cardRef = useRef<HTMLDivElement>(null)
 
-  const handleQuickAdd = () => {
+  const handleQuickAdd = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     setAdded(true)
 
     const cartIcon = document.getElementById('nav-cart-icon')
@@ -43,8 +59,6 @@ export default function ProductCard({ name, category, price, image, index }: { n
       `
       document.body.appendChild(orb)
 
-      // Arc: go up first, then curve down to cart
-      // Use two sequential tweens to form the arc
       const arcPeakY = Math.min(startY, endY) - 100
 
       gsap.timeline({
@@ -73,6 +87,7 @@ export default function ProductCard({ name, category, price, image, index }: { n
   }
 
   const handleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault()
     e.stopPropagation()
     setWishlist(!wishlist)
   }
@@ -80,19 +95,20 @@ export default function ProductCard({ name, category, price, image, index }: { n
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1], delay: (index % 3) * 0.1 }}
-      className="group relative flex flex-col"
+      initial={{ opacity: 0, scale: 0.95, y: 30 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: [0.21, 1.02, 0.73, 1], delay: (index % 4) * 0.1 }}
+      className={`group relative flex flex-col cursor-pointer ${className}`}
       whileHover="hover"
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EDEBE8]">
+      <div className="relative w-full h-full min-h-[250px] overflow-hidden bg-[#EDEBE8]">
         <Image
           src={image}
           alt={name}
           fill
-          className="object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.06]"
+          className="object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.05]"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
         
         {/* Wishlist Heart */}
@@ -128,14 +144,15 @@ export default function ProductCard({ name, category, price, image, index }: { n
         </motion.button>
       </div>
       
-      <div className="mt-3 flex flex-col">
+      <div className="mt-4 flex flex-col pb-2">
         <span className="font-sans text-[10px] uppercase tracking-[0.15em] text-[#9A9189]">
           {category}
         </span>
-        <h3 className="mt-1 font-sans text-[15px] font-medium text-[#1A1A18]">
+        <h3 className="mt-1 font-sans text-[15px] font-medium text-[#1A1A18] self-start inline-flex relative overflow-hidden group-hover:text-[#1A1A18]">
           {name}
+          <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#1A1A18] transform -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0"></span>
         </h3>
-        <span className="mt-0.5 font-sans text-[14px] text-[#C4622D]">
+        <span className="mt-1 font-sans text-[14px] text-[#C4622D]">
           {price}
         </span>
       </div>

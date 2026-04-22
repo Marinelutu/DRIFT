@@ -21,7 +21,7 @@ const KineticText: React.FC<KineticTextProps> = ({ headline, subtext, bg, align 
   return (
     <section 
       ref={containerRef}
-      className={`py-36 px-8 ${isDark ? 'bg-dark text-base' : 'bg-base text-dark'}`}
+      className={`py-36 px-8 bg-transparent ${isDark ? 'text-base' : 'text-dark'}`}
     >
       <div className={`max-w-[1400px] mx-auto ${isCentered ? 'text-center' : 'text-left'}`}>
         <h2 className="mb-8 font-display text-[clamp(3.5rem,7vw,6.5rem)] leading-[1.1]">

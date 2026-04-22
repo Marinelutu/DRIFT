@@ -15,7 +15,7 @@ const ugcImages = [
 
 export function UGCWall() {
   return (
-    <section className="bg-[#F5F0EB] py-24">
+    <section className="bg-transparent py-24">
       <div className="px-8 mb-12">
         <h2 className="font-display text-[clamp(2.5rem,5vw,4rem)] text-[#1A1A18] leading-tight">
           Worn by Real People.

@@ -13,8 +13,8 @@ const Marquee: React.FC<MarqueeProps> = ({ variant }) => {
   
   return (
     <div 
-      className={`w-full overflow-hidden flex items-center h-[52px] border-y border-dark/10 select-none ${
-        isDark ? 'bg-dark text-base' : 'bg-base text-dark'
+      className={`w-full overflow-hidden flex items-center h-[52px] border-y border-dark/10 select-none bg-transparent ${
+        isDark ? 'text-base' : 'text-dark'
       }`}
     >
       <div 
